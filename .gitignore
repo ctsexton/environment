@@ -1,0 +1,15 @@
+# ignore everything
+/*
+/.*
+/.vim/*
+/.config/*
+
+# include only the following
+!/.gitignore
+!/.vimrc
+!/.bashrc
+!/.vim
+!/.vim/colors
+!/.config
+!/.config/alacritty
+!/.config/i3
