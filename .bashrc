@@ -35,4 +35,25 @@ jack_setup () {
 	fi
 }
 
+# setup motu ultralite direct networking over ethernet
+ultra_net () {
+	interface=$(ip link | sed -n 's/.*\(enp0s.*\):.*/\1/p')
+	ip link set $interface up
+	ip address add 169.254.12.237 dev $interface
+	ip route add 169.254.12.238 dev $interface
+	echo "interface $interface connected and ultralite set up"
+}
 
+# start second display
+second_display () {
+	xrandr --output DP2 --auto --right-of eDP1
+}
+
+# mount a hdd
+dmount () {
+	lsblk -f 
+	echo "Carefully type the device label and mount point"
+	read -p 'Device Label: ' device_label
+	read -p 'Mount point: ' mount_point
+	sudo mount -o gid=users -L "$device_label" "$mount_point"
+}
