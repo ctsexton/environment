@@ -9,6 +9,7 @@ alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
 export PATH=${HOME}/bin:${PATH}
 export PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
+export FZF_DEFAULT_COMMAND="find . -path '*/\.*' -type d -prune -o -type f -print -o -type l -print 2> /dev/null | sed s/^..//"
 
 # clone the current terminal window
 clone () { 
@@ -56,4 +57,11 @@ dmount () {
 	read -p 'Device Label: ' device_label
 	read -p 'Mount point: ' mount_point
 	sudo mount -o gid=users -L "$device_label" "$mount_point"
+}
+
+wav2mp3 () {
+	mkdir $1_mp3
+	cd $1
+	for i in *.wav; do ffmpeg -i "$i" -b:a 320k "${i%.*}.mp3"; done
+	mv *.mp3 ../$1_mp3/
 }

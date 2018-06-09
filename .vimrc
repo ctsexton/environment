@@ -7,14 +7,10 @@
 " Individual settings can be reverted with ":set option&".
 " Other commands can be reverted as mentioned below.
 
+
+""""""""""BASE SETTINGS""""""""""""
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
-  finish
-endif
-
-" Bail out if something that ran earlier, e.g. a system wide vimrc, does not
-" want Vim to use these default values.
-if exists('skip_defaults_vim')
   finish
 endif
 
@@ -25,6 +21,12 @@ if &compatible
   set nocompatible
 endif
 
+" Bail out if something that ran earlier, e.g. a system wide vimrc, does not
+" want Vim to use these default values.
+if exists('skip_defaults_vim')
+  finish
+endif
+"
 " When the +eval feature is missing, the set command above will be skipped.
 " Use a trick to reset compatible only when the +eval feature is missing.
 silent! while 0
@@ -57,11 +59,6 @@ endif
 " Do not recognize octal numbers for Ctrl-A and Ctrl-X, most users find it
 " confusing.
 set nrformats-=octal
-
-" For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries.
-if has('win32')
-  set guioptions-=t
-endif
 
 " Don't use Ex mode, use Q for formatting.
 " Revert with ":unmap Q".
@@ -133,10 +130,12 @@ if has('langmap') && exists('+langremap')
   set nolangremap
 endif
 
+"""""""""""""""" MY SETTINGS """""""""""""""""""""""
 
 " 
 " VIM specific (not plugin) settings
 "
+:let mapleader = "\<Space>"
 set tabstop=4 shiftwidth=4 noexpandtab " set default tab width to 4
 set number
 hi VertSplit cterm=NONE gui=NONE " minimal vertical split when two files open
@@ -149,10 +148,11 @@ endif
 call plug#begin('~/.vim/plugged')
 Plug 'https://github.com/scrooloose/nerdtree.git'
 Plug 'https://github.com/lumiliet/vim-twig.git'
-Plug 'https://github.com/vim-airline/vim-airline.git'
+Plug 'itchyny/lightline.vim'
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 Plug 'https://github.com/tpope/vim-fugitive.git'
 Plug 'https://github.com/Raimondi/delimitMate.git'
-" Plug 'Valloric/YouCompleteMe'
 call plug#end()
 
 "
@@ -162,15 +162,24 @@ call plug#end()
 let delimitMate_expand_cr = 2
 
 "
-" AIRLINE SETTINGS
+" FZF Mapping
 "
-:let g:airline_extensions = ['fugitiveline', 'branch']
+nnoremap <silent> <expr> <Leader><Leader> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF\<cr>"
 
 "
-" YouCompleteMe Settings
+" LIGHTLINE SETTINGS
 "
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_autoclose_preview_window_after_completion = 1
+let g:lightline = {
+      \ 'colorscheme': 'one',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
+      \ },
+      \ }
+set noshowmode
 
 " NERDTree Settings
 autocmd StdinReadPre * let s:std_in=1
@@ -192,3 +201,11 @@ let NERDTreeMinimalUI = 1
 " let g:sclangTerm = "alacritty"
 " let g:sclangPipeApp = "~/.vim/plugged/scvim/bin/start_pipe"
 " let g:sclangDispatcher = "~/.vim/plugged/scvim/bin/sc_dispatcher"
+
+"
+" YouCompleteMe Settings
+"
+" let g:ycm_autoclose_preview_window_after_insertion = 1
+" let g:ycm_autoclose_preview_window_after_completion = 1
+
+
