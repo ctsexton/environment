@@ -15,7 +15,7 @@ export FZF_DEFAULT_COMMAND="find . -path '*/\.*' -type d -prune -o -type f -prin
 clone () { 
 	for ((i=0;i<$1;i++)) 
 	do 
-		nohup alacritty &
+		nohup alacritty >/dev/null 2>&1 & 
 	done
 }
 
@@ -64,4 +64,12 @@ wav2mp3 () {
 	cd $1
 	for i in *.wav; do ffmpeg -i "$i" -b:a 320k "${i%.*}.mp3"; done
 	mv *.mp3 ../$1_mp3/
+}
+
+toWav () {
+  mkdir $1_wav
+  cd $1
+  for i in *; do sox -v 0.95 --norm=-3 "$i" "${i%.*}.wav"; done
+  mv *.wav ../$1_wav/
+  cd ..
 }

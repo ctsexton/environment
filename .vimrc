@@ -136,7 +136,7 @@ endif
 " VIM specific (not plugin) settings
 "
 :let mapleader = "\<Space>"
-set tabstop=4 shiftwidth=4 noexpandtab " set default tab width to 4
+set tabstop=2 softtabstop=2 shiftwidth=2 expandtab " set default tab width to 2
 set number
 hi VertSplit cterm=NONE gui=NONE " minimal vertical split when two files open
 let NERDTreeShowHidden=1
@@ -144,15 +144,22 @@ colorscheme papaya_custom
 if (has("termguicolors"))
   set termguicolors
 endif
+autocmd BufEnter * :syntax sync fromstart
+autocmd BufNewFile,BufReadPost *.hbs set filetype=pug
 
 call plug#begin('~/.vim/plugged')
 Plug 'https://github.com/scrooloose/nerdtree.git'
 Plug 'https://github.com/lumiliet/vim-twig.git'
-Plug 'itchyny/lightline.vim'
-Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'https://github.com/tpope/vim-fugitive.git'
 Plug 'https://github.com/Raimondi/delimitMate.git'
+Plug 'posva/vim-vue'
+Plug 'https://github.com/digitaltoad/vim-pug.git'
+"Plug 'gabrielelana/vim-markdown'
+Plug 'https://github.com/kchmck/vim-coffee-script.git'
+Plug 'https://github.com/supercollider/scvim.git'
+Plug 'https://github.com/terryma/vim-smooth-scroll.git'
+Plug 'https://github.com/Valloric/YouCompleteMe.git'
+Plug 'https://github.com/mxw/vim-jsx.git'
 call plug#end()
 
 "
@@ -165,21 +172,6 @@ let delimitMate_expand_cr = 2
 " FZF Mapping
 "
 nnoremap <silent> <expr> <Leader><Leader> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF\<cr>"
-
-"
-" LIGHTLINE SETTINGS
-"
-let g:lightline = {
-      \ 'colorscheme': 'one',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'fugitive#head'
-      \ },
-      \ }
-set noshowmode
 
 " NERDTree Settings
 autocmd StdinReadPre * let s:std_in=1
@@ -195,17 +187,26 @@ let NERDTreeMinimalUI = 1
 
 " 
 " SCVim Settings
-" NOT CURRENTLY WORKING
 "
-" let g:sclangTerm = "xterm -fn '-*-fixed-medium-*-*-*-20-*-*-*-*-*-*-*' -rv -bd black -ls -xrm 'XTerm*selectToClipboard: true'"
-" let g:sclangTerm = "alacritty"
-" let g:sclangPipeApp = "~/.vim/plugged/scvim/bin/start_pipe"
-" let g:sclangDispatcher = "~/.vim/plugged/scvim/bin/sc_dispatcher"
+" let g:sclangTerm = "xterm -fn '-*-fixed-medium-*-*-*-40-*-*-*-*-*-*-*' -rv -bd black -ls -xrm 'XTerm*selectToClipboard: true'"
+let g:sclangTerm = "xterm -fa monaco -fs 13 -bg black -fg green -ls -xrm 'XTerm*selectToClipboard: true'"
+let g:sclangPipeApp = "~/.vim/plugged/scvim/bin/start_pipe"
+let g:sclangDispatcher = "~/.vim/plugged/scvim/bin/sc_dispatcher"
+let g:scFlash = 1
+au Filetype supercollider nnoremap <buffer> <leader><CR> :call SClang_block()<CR>
+au Filetype supercollider vnoremap <buffer> <leader><CR> :call SClang_send()<CR>
+au Filetype supercollider nnoremap <buffer> <leader>h :call SClang_line()<CR>
+au Filetype supercollider nnoremap <buffer> <leader>. :call SClangHardstop()<CR>
 
 "
 " YouCompleteMe Settings
 "
 " let g:ycm_autoclose_preview_window_after_insertion = 1
 " let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_collect_identifiers_from_tags_files = 1
 
-
+"
+" smooth scroll settings
+"
+noremap <silent> <c-k> :call smooth_scroll#up(10, 10, 1)<CR>
+noremap <silent> <c-j> :call smooth_scroll#down(10, 10, 1)<CR>

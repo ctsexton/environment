@@ -239,10 +239,10 @@ call SetHiLink("SpellRare", "SpellBad")
 call SetHiGui("Statement", "#5dc271", "NONE", "NONE", "NONE")
 call SetHi256("Statement", "78", "NONE", "NONE")
 
-call SetHiGui("StatusLine", "#1f1e24", "#434557", "NONE", "#434557")
+call SetHiGui("StatusLine", "#dddddd", "NONE", "NONE", "#434557")
 call SetHi256("StatusLine", "235", "240", "NONE")
 
-call SetHiGui("StatusLineNC", "#52505c", "#302e3d", "NONE", "#302e3d")
+call SetHiGui("StatusLineNC", "#52505c", "NONE", "NONE", "#302e3d")
 call SetHi256("StatusLineNC", "59", "237", "NONE")
 
 call SetHiGui("StorageClass", "#536991", "NONE", "NONE", "NONE")
