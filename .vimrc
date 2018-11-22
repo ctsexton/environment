@@ -146,6 +146,15 @@ if (has("termguicolors"))
 endif
 autocmd BufEnter * :syntax sync fromstart
 autocmd BufNewFile,BufReadPost *.hbs set filetype=pug
+" Moving lines/blocks up and down
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+" Insert newline at cursor
+nnoremap <A-o> i<CR><ESC>k$
 
 call plug#begin('~/.vim/plugged')
 Plug 'https://github.com/scrooloose/nerdtree.git'
