@@ -61,7 +61,11 @@ function! SetHi256(group, ...)
     let theme_string .= 'ctermfg=' . a:1 . ' '
   endif
   if strlen(a:2)
+	if a:2 == "NONE"
     let theme_string .= 'ctermbg=' . a:2 . ' '
+  else
+    let theme_string .= 'ctermbg=' . a:2 . ' '
+  endif
   endif
   if a:0 >= 3 && strlen(a:3)
     let theme_string .= 'cterm=' . a:3
@@ -163,7 +167,7 @@ call SetHiGui("Label", "#ba9f7e", "NONE", "NONE", "NONE")
 call SetHi256("Label", "137", "NONE", "NONE")
 
 call SetHiGui("LineNr", "#48464e", "NONE", "NONE", "#18171c")
-call SetHi256("LineNr", "59", "NONE", "NONE")
+call SetHi256("LineNr", "240", "232", "NONE")
 
 call SetHiGui("Macro", "#ba9f7e", "NONE", "NONE", "NONE")
 call SetHi256("Macro", "137", "NONE", "NONE")
@@ -181,9 +185,9 @@ call SetHiGui("NonText", "#5e6c70", "NONE", "italic", "NONE")
 call SetHi256("NonText", "66", "NONE", "NONE")
 
 call SetHiGui("Normal", "#b6d3e3", "NONE", "NONE")
-call SetHi256("Normal", "152", "235", "NONE")
+call SetHi256("Normal", "152", "NONE", "NONE")
 
-call SetHiGui("Number", "#bd7b6f", "NONE", "NONE", "NONE")
+call SetHiGui("Number", "#bd7b6f", "#000000", "NONE", "NONE")
 call SetHi256("Number", "131", "NONE", "NONE")
 
 call SetHiGui("Operator", "#604f75", "NONE", "NONE", "NONE")
@@ -285,7 +289,7 @@ call SetHiGui("VertSplit", "#5e6c70", "NONE", "NONE", "#5e6c70")
 call SetHi256("VertSplit", "59", "NONE", "NONE")
 
 call SetHiGui("Visual", "#000000", "#7a8990", "NONE", "#f9f9ff")
-call SetHi256("Visual", "235", "189", "NONE")
+call SetHi256("Visual", "232", "248", "NONE")
 
 call SetHiGui("VisualNOS", "#192224", "#f9f9ff", "underline", "#f9f9ff")
 call SetHi256("VisualNOS", "235", "189", "underline")

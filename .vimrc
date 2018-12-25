@@ -140,10 +140,12 @@ set tabstop=2 softtabstop=2 shiftwidth=2 expandtab " set default tab width to 2
 set number
 hi VertSplit cterm=NONE gui=NONE " minimal vertical split when two files open
 let NERDTreeShowHidden=1
-colorscheme papaya_custom
-if (has("termguicolors"))
+if $TERM == "alacritty"
   set termguicolors
 endif
+colorscheme papaya
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
+
 autocmd BufEnter * :syntax sync fromstart
 autocmd BufNewFile,BufReadPost *.hbs set filetype=pug
 " Moving lines/blocks up and down
@@ -169,6 +171,8 @@ Plug 'https://github.com/supercollider/scvim.git'
 Plug 'https://github.com/terryma/vim-smooth-scroll.git'
 Plug 'https://github.com/Valloric/YouCompleteMe.git'
 Plug 'https://github.com/mxw/vim-jsx.git'
+Plug 'pangloss/vim-javascript'
+Plug 'ambv/black'
 call plug#end()
 
 "
@@ -219,3 +223,6 @@ let g:ycm_collect_identifiers_from_tags_files = 1
 "
 noremap <silent> <c-k> :call smooth_scroll#up(10, 10, 1)<CR>
 noremap <silent> <c-j> :call smooth_scroll#down(10, 10, 1)<CR>
+
+" Black
+autocmd BufWritePre *.py execute ':Black'
