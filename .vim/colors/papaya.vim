@@ -188,7 +188,7 @@ call SetHiGui("Normal", "#b6d3e3", "NONE", "NONE")
 call SetHi256("Normal", "152", "NONE", "NONE")
 
 call SetHiGui("Number", "#bd7b6f", "#000000", "NONE", "NONE")
-call SetHi256("Number", "131", "NONE", "NONE")
+call SetHi256("Number", "207", "NONE", "NONE")
 
 call SetHiGui("Operator", "#604f75", "NONE", "NONE", "NONE")
 call SetHi256("Operator", "60", "NONE", "NONE")
@@ -224,7 +224,7 @@ call SetHiGui("Special", "#ba9f7e", "NONE", "NONE", "NONE")
 call SetHi256("Special", "137", "NONE", "NONE")
 
 call SetHiGui("SpecialChar", "#ba9f7e", "NONE", "NONE", "NONE")
-call SetHi256("SpecialChar", "137", "NONE", "NONE")
+call SetHi256("SpecialChar", "159", "NONE", "NONE")
 
 call SetHiGui("SpecialComment", "#ba9f7e", "NONE", "NONE", "NONE")
 call SetHi256("SpecialComment", "137", "NONE", "NONE")
@@ -244,10 +244,10 @@ call SetHiGui("Statement", "#5dc271", "NONE", "NONE", "NONE")
 call SetHi256("Statement", "78", "NONE", "NONE")
 
 call SetHiGui("StatusLine", "#dddddd", "NONE", "NONE", "#434557")
-call SetHi256("StatusLine", "235", "240", "NONE")
+call SetHi256("StatusLine", "235", "250", "NONE")
 
 call SetHiGui("StatusLineNC", "#52505c", "NONE", "NONE", "#302e3d")
-call SetHi256("StatusLineNC", "59", "237", "NONE")
+call SetHi256("StatusLineNC", "232", "232", "NONE")
 
 call SetHiGui("StorageClass", "#536991", "NONE", "NONE", "NONE")
 call SetHi256("StorageClass", "60", "NONE", "NONE")
@@ -277,7 +277,7 @@ call SetHiGui("Todo", "#e66177", "NONE", "bold", "#16131f")
 call SetHi256("Todo", "167", "NONE", "bold")
 
 call SetHiGui("Type", "#0088ff", "NONE", "NONE", "NONE")
-call SetHi256("Type", "33", "NONE", "NONE")
+call SetHi256("Type", "51", "NONE", "bold")
 
 call SetHiGui("Typedef", "#536991", "NONE", "NONE", "NONE")
 call SetHi256("Typedef", "60", "NONE", "NONE")
@@ -321,7 +321,7 @@ call SetHiLink("htmlTagN", "htmlTag")
 call SetHiGui("markdownBold", "#ffffff", "NONE", "bold")
 call SetHi256("markdownBold", "15", "NONE", "bold")
 call SetHiGui("markdownCodeBlock", "#a7a2c3", "#29282d", "NONE")
-call SetHi256("markdownCodeBlock", "145", "59", "NONE")
+call SetHi256("markdownCodeBlock", "250", "232", "NONE")
 call SetHiLink("markdownCodeDelimiter", "markdownCodeBlock")
 call SetHiGui("markdownH1", "#73d677", "NONE", "NONE")
 call SetHi256("markdownH1", "78", "NONE", "NONE")

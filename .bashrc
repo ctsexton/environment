@@ -10,12 +10,14 @@ PS1='[\u@\h \W]\$ '
 export PATH=${HOME}/bin:${PATH}
 export PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
 export FZF_DEFAULT_COMMAND="find . -path '*/\.*' -type d -prune -o -type f -print -o -type l -print 2> /dev/null | sed s/^..//"
+PATH="$HOME/.node_modules/bin:$PATH"
+export npm_config_prefix=~/.node_modules
 
 # clone the current terminal window
 clone () { 
 	for ((i=0;i<$1;i++)) 
 	do 
-		nohup alacritty >/dev/null 2>&1 & 
+		nohup urxvtc >/dev/null 2>&1 & 
 	done
 }
 

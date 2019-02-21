@@ -173,6 +173,8 @@ Plug 'https://github.com/Valloric/YouCompleteMe.git'
 Plug 'https://github.com/mxw/vim-jsx.git'
 Plug 'pangloss/vim-javascript'
 Plug 'ambv/black'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
 call plug#end()
 
 "
